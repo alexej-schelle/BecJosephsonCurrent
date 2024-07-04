@@ -1,11 +1,6 @@
 ############################################################################################################################################################################
                                                                                                                                               																										  
-   Ab-initio simulation of the relative phase distribution of two coupled Bose-Einstein condensates.
-
-
-   The Python TimeMeasurement.py calculates :
-
-   - Relative phase distribution of two coupled Bose-Einstein condensates 
+   The Python TimeMeasurement.py calculates the relative phase distribution of two coupled Bose-Einstein condensates 
  
   * :
  
