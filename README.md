@@ -1,3 +1,4 @@
+# Phase correlations between two coherently coupled Bose-Einstein condensates
 
 - TimeMeasurement.py calculates the relative phase distribution of two coupled Bose-Einstein condensates
 - RunScript.py iterates the model over different realizations
