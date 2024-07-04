@@ -16,7 +16,7 @@
 #  * :
 # 
 #   License Copyright:  Dr. A. Schelle, Bachschmidstr. 4, 87600 Kaufbeuren 
-#   License Type :      MIT license (2023)
+#   License Type :      MIT license (2024)
 #   License Contact:    E-Mail : alexej.schelle@gmail.com
 # 
 #   ** : 
@@ -238,4 +238,4 @@ plt.xlim([-1.0, 1.0])
 plt.ylim([-1.0, 1.0])
 cbar = plt.colorbar()
 cbar.ax.set_ylabel('$\Pi[Re(\Psi),Im(\Psi))]$')
-plt.savefig('/Users/krealix/Desktop/KREALIX/MeasureImaginaryTime/fig_1.png')
+plt.savefig('/.../fig_1.png')
