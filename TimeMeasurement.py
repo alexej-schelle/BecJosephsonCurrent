@@ -16,7 +16,7 @@
 #  * :
 # 
 #   License Copyright:  Dr. A. Schelle, Bachschmidstr. 4, 87600 Kaufbeuren 
-#   License Type :      MIT license (2023)
+#   License Type :      MIT license (2024)
 #   License Contact:    E-Mail : alexej.schelle@gmail.com
 # 
 #   ** : 
@@ -397,7 +397,7 @@ plt.xlim(-1.0, 1.0)
 plt.ylim(-1.0, 1.0)
 cbar = plt.colorbar()
 cbar.ax.set_ylabel('$\Pi[Re(\Psi), Im(\Psi))]$')
-plt.savefig('/Users/krealix/Desktop/KREALIX/PhaseCorrelations/T1_vs_T2/SqueezedField/fig_1.png')
+plt.savefig('/.../fig_1.png')
 
 plt.figure(2)
 plt.set_cmap("Blues")
@@ -409,4 +409,4 @@ plt.ylabel('$|\Psi|^2$', fontsize = 12)
 plt.xlabel('$\phi$', fontsize = 12)
 cbar = plt.colorbar()
 cbar.ax.set_ylabel('$\Pi[Re(\Psi), Im(\Psi))]$')
-plt.savefig('/Users/krealix/Desktop/KREALIX/PhaseCorrelations/T1_vs_T2/SqueezedField/fig_2.png')
+plt.savefig('/.../fig_2.png')
