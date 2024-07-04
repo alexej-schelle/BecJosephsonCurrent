@@ -57,7 +57,7 @@ omx = 2.0*math.pi*50.00 # Trap frequency in x direction
 omy = 2.0*math.pi*150.00 # Trap frequency in y direction 
 omz = 2.0*math.pi*250.00 # Trap frequency in z direction
 
-start_temp = 10.0 # in units of nK
+start_temp = 100.0 # in units of nK
 rhbkb = 7.63822291E-3 # in units of nK
 
 norm = 0.0
@@ -100,6 +100,9 @@ mu_y_2 = [] # Collect the imaginary part of the integrated wave field
 phase_dist_1 = [] # Collect the phases for distribution
 phase_dist_2 = [] # Collect the phases for distribution
 
+field_real = [] # Collect the phases for distribution
+field_imag = [] # Collect the phases for distribution
+
 phi_collect = []
 interference = []
 
@@ -110,7 +113,7 @@ for l in range(1, sample):
     drop = 1
     z = ptn
 
-    start_temp = 5.0
+    start_temp = 10.0
 
     mu = 0.0
     norm = 0.0
@@ -235,18 +238,18 @@ for l in range(1, sample):
     drop = 1
     z = ptn
 
-    start_temp = 25.0
+    start_temp = 10.0
 
     mu = 0.0
     norm = 0.0
 
     betamu = complex(0.0,0.0)
     temp = start_temp
-                
+
     omx = 2.0*math.pi*50.00 # Trap frequency in x direction  
     omy = 2.0*math.pi*50.00 # Trap frequency in y direction 
     omz = 2.0*math.pi*50.00 # Trap frequency in z direction
-
+                  
     for k in range(1, maxmode):
         
         en_x[k] = rhbkb*k*omx/temp # Energy in x direction
@@ -361,12 +364,12 @@ for l in range(1, sample):
 
 # Model interference measurement of two superimposed coherent atom lasers as a function of the relative phase phi
 
-phase_sample  = 50000
+phase_sample  = 5000
 var_interference = 0.0
 
 for m in range(0, phase_sample):
 
-    phi = random.uniform(-2.00*math.pi, 2.00*math.pi)
+    phi = random.uniform(-1.00*math.pi, 1.00*math.pi)
 
     print('Sample step Nr. ' + str(m))
     minimum = sample
@@ -378,16 +381,32 @@ for m in range(0, phase_sample):
         for l in range(0, minimum):
 
             var_interference = var_interference + complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_1[l],mu_y_1[l])) + complex(mu_x_2[k],mu_y_2[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l])) + complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l]))*complex(math.cos(phi), math.sin(phi)) + numpy.conj(complex(mu_x_1[k],mu_y_1[k]))*complex(mu_x_2[l],mu_y_2[l])*complex(math.cos(phi), -math.sin(phi))
+        
+            field_real.append((complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_1[l],mu_y_1[l])) + complex(mu_x_2[k],mu_y_2[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l])) + complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l]))*complex(math.cos(phi), math.sin(phi)) + numpy.conj(complex(mu_x_1[k],mu_y_1[k]))*complex(mu_x_2[l],mu_y_2[l])*complex(math.cos(phi), -math.sin(phi))).real)
+            field_imag.append((complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_1[l],mu_y_1[l])) + complex(mu_x_2[k],mu_y_2[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l])) + complex(mu_x_1[k],mu_y_1[k])*numpy.conj(complex(mu_x_2[l],mu_y_2[l]))*complex(math.cos(phi), math.sin(phi)) + numpy.conj(complex(mu_x_1[k],mu_y_1[k]))*complex(mu_x_2[l],mu_y_2[l])*complex(math.cos(phi), -math.sin(phi))).imag)
 
     phi_collect.append(phi/math.pi)
     interference.append(math.fabs(var_interference.imag**2 + var_interference.real**2))
 
 plt.figure(1)
-plt.set_cmap("Blues")
-plt.hist2d(phi_collect, interference, bins = 200, density = True)
-plt.tick_params(axis='both', which='major', labelsize = 14)
-plt.ylabel('$|\Psi|^2$', fontsize = 14)
-plt.xlabel('$\phi$', fontsize = 14)
+plt.hist2d(field_real, field_imag, bins = 200, density = True)
+plt.tick_params(axis='both', which='major', labelsize = 12)
+plt.ylabel('$Im(\Psi)$', fontsize = 12)
+plt.xlabel('$Re(\Psi)$', fontsize = 12)
+plt.xlim(-1.0, 1.0)
+plt.ylim(-1.0, 1.0)
 cbar = plt.colorbar()
 cbar.ax.set_ylabel('$\Pi[Re(\Psi), Im(\Psi))]$')
-plt.savefig('/Users/krealix/Desktop/KREALIX/PhaseCorrelations/T1_vs_T2/PhaseDistribution/NonDeterministicModeling/fig_1.png')
+plt.savefig('/Users/krealix/Desktop/KREALIX/PhaseCorrelations/T1_vs_T2/SqueezedField/fig_1.png')
+
+plt.figure(2)
+plt.set_cmap("Blues")
+plt.hist2d(phi_collect, interference, bins = 200, density = True)
+plt.tick_params(axis='both', which='major', labelsize = 12)
+plt.xlim(-1.0, 1.0)
+plt.ylim(-1.0, 1.0)
+plt.ylabel('$|\Psi|^2$', fontsize = 12)
+plt.xlabel('$\phi$', fontsize = 12)
+cbar = plt.colorbar()
+cbar.ax.set_ylabel('$\Pi[Re(\Psi), Im(\Psi))]$')
+plt.savefig('/Users/krealix/Desktop/KREALIX/PhaseCorrelations/T1_vs_T2/SqueezedField/fig_2.png')
