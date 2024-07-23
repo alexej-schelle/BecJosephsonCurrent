@@ -1,4 +1,4 @@
-# Phase correlations between two coherently coupled Bose-Einstein condensates
+# Phase correlations in ultracold atomic lasers
 Python Monte Carlo simulation software to calculate the phase correlations of two independent Bose-Einistein condensates.
 
 # Installation unter Linux und Mac Betriebssystemen
